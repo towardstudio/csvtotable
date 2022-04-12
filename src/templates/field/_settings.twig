@@ -1,0 +1,140 @@
+{% extends "_components/fieldtypes/elementfieldsettings" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set fileKindOptions = field.getFileKindOptions() %}
+{% set isMatrix = 'craft\\fields\\Matrix' in craft.app.view.getNamespace() %}
+
+{% macro uploadLocationField(config) %}
+    {% embed '_includes/forms/field' with config %}
+        {% block input %}
+            {% import '_includes/forms' as forms %}
+            <div class="flex">
+                <div>
+                    {{ forms.select({
+                        name: "#{config.name}Source",
+                        options: config.sourceOptions,
+                        value: config.sourceValue,
+                        describedBy: describedBy,
+                    }) }}
+                </div>
+                <div class="flex-grow">
+                    {{ forms.text({
+                        class: 'ltr',
+                        name: "#{config.name}Subpath",
+                        value: config.subpathValue,
+                        placeholder: "path/to/subfolder"|t('app'),
+                        describedBy: describedBy,
+                    }) }}
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endmacro %}
+
+
+{% block fieldSettings %}
+    {{ forms.checkboxField({
+        label: 'Restrict assets to a single folder'|t('app'),
+        id: 'useSingleFolder-toggle',
+        name: 'useSingleFolder',
+        class: 'use-single-folder-cb',
+        value: 1,
+        checked: field.useSingleFolder,
+        toggle: 'single-folder-settings',
+        reverseToggle: 'multi-folder-settings'
+    }) }}
+
+    {% set uploadLocationNote = "Note that the subfolder path can contain variables like <code>{slug}</code> or <code>{author.username}</code>."|t('app') %}
+    {% if isMatrix %}
+        {% set uploadLocationNote = uploadLocationNote|replace({
+            '{slug}': '{owner.slug}',
+            '{author.username}': '{owner.author.username}'
+        }) %}
+    {% endif %}
+
+    <div id="multi-folder-settings"{% if field.useSingleFolder %} class="hidden"{% endif %}>
+        {{ block('sourcesField') }}
+
+        {{ _self.uploadLocationField({
+            label: 'Default Asset Location'|t('app'),
+            instructions: 'Where assets should be stored when they are uploaded directly to the field, or via a front-end form.'|t('app') ~' '~ uploadLocationNote,
+            name: 'defaultUploadLocation',
+            sourceOptions: sourceOptions,
+            sourceValue: field.defaultUploadLocationSource,
+            subpathValue: field.defaultUploadLocationSubpath,
+            errors: field.getErrors('defaultUploadLocationSubpath'),
+        }) }}
+    </div>
+
+    <div id="single-folder-settings"{% if not field.useSingleFolder %} class="hidden"{% endif %}>
+        {{ _self.uploadLocationField({
+            label: 'Asset Location'|t('app'),
+            instructions: 'Where selected assets should be stored.'|t('app') ~' '~ uploadLocationNote,
+            name: 'singleUploadLocation',
+            sourceOptions: sourceOptions,
+            sourceValue: field.singleUploadLocationSource,
+            subpathValue: field.singleUploadLocationSubpath,
+            errors: field.getErrors('singleUploadLocationSubpath'),
+        }) }}
+    </div>
+
+    {{ forms.checkboxField({
+        label: 'Show unpermitted volumes'|t('app'),
+        instructions: 'Whether to show volumes that the user doesn’t have permission to view.'|t('app'),
+        id: 'showUnpermittedVolumes',
+        name: 'showUnpermittedVolumes',
+        checked: field.showUnpermittedVolumes,
+    }) }}
+
+    {{ forms.checkboxField({
+        label: 'Show unpermitted files'|t('app'),
+        instructions: 'Whether to show files that the user doesn’t have permission to view, per the “View files uploaded by other users” permission.'|t('app'),
+        id: 'showUnpermittedFiles',
+        name: 'showUnpermittedFiles',
+        checked: field.showUnpermittedFiles,
+    }) }}
+
+    <div class="hidden">
+		{{ forms.textField({
+        	label: "Limit"|t('app'),
+        	instructions: "Limit the number of selectable {type}."|t('app', { type: pluralElementType }),
+        	id: 'limit',
+        	name: 'limit',
+        	value: 1,
+        	size: 2,
+        	errors: field.getErrors('limit')
+    	}) }}
+		{{ forms.textField({
+            label: "Selection Label"|t('app'),
+            instructions: "Enter the text you want to appear on the {type} selection input."|t('app', { type: elementType }),
+            id: 'selectionLabel',
+            name: 'selectionLabel',
+            value: 'Add a CSV',
+            placeholder: field.defaultSelectionLabel(),
+            errors: field.getErrors('selectionLabel')
+        }) }}
+	</div>
+
+    {{ block('viewModeField') }}
+    {{ block('validateRelatedElementsField') }}
+
+    <hr>
+
+    {{ forms.selectField({
+        id: 'preview-mode',
+        name: 'previewMode',
+        label: 'Preview Mode'|t('app'),
+        instructions: 'How the related {type} should be displayed within element indexes.'|t('app', {
+            type: pluralElementType,
+        }),
+        options: [
+            {label: 'Show thumbnails and titles'|t('app'), value: 'full'},
+            {label: 'Show thumbnails only'|t('app'), value: 'thumbs'},
+        ],
+        value: field.previewMode,
+        errors: field.getErrors('previewMode'),
+    }) }}
+
+    {{ block('advancedSettings') }}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends '_layouts/cp' %}
+
+{% set title = 'Settings' %}
+
+{% import '_includes/forms' as forms %}
+
+{% block content %}
+	{{ actionInput('csvtotable/settings/save-plugin-settings') }}
+	{% namespace 'settings' %}
+	{{
+		forms.textField({
+			label: 'Table Classes',
+			instructions: 'These will be the classes added to the <table> element',
+			id: 'tableClass',
+			name: 'tableClass',
+			value: settings.tableClass ?? null
+		})
+	}}
+	{{
+		forms.textField({
+			label: 'Header Classes',
+			instructions: 'These will be the classes added to the <thead> element',
+			id: 'theadClass',
+			name: 'theadClass',
+			value: settings.theadClass ?? null
+		})
+	}}
+	{{
+		forms.textField({
+			label: 'Body Classes',
+			instructions: 'These will be the classes added to the <tbody> element',
+			id: 'tbodyClass',
+			name: 'tbodyClass',
+			value: settings.tbodyClass ?? null
+		})
+	}}
+	{{
+		forms.textField({
+			label: 'TH Classes',
+			instructions: 'These will be the classes added to the <th> element',
+			id: 'thClass',
+			name: 'thClass',
+			value: settings.thClass ?? null
+		})
+	}}
+	{{
+		forms.textField({
+			label: 'TR Classes',
+			instructions: 'These will be the classes added to the <tr> element',
+			id: 'trClass',
+			name: 'trClass',
+			value: settings.trClass ?? null
+		})
+	}}
+	{{
+		forms.textField({
+			label: 'TD Classes',
+			instructions: 'These will be the classes added to the <td> element',
+			id: 'tdClass',
+			name: 'tdClass',
+			value: settings.tdClass ?? null
+		})
+	}}
+	{% endnamespace %}
+{% endblock %}
