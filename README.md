@@ -38,7 +38,7 @@ You will need to add the following to your `config/general.php` file:
 // Allow CSV files to be uploaded
 'extraFileKinds' => [
 	// register new "CSV" file kind
-	'CSV' => [
+	'csv' => [
     	'label' => 'CSV',
     	'extensions' => ['csv'],
 	],

@@ -10,9 +10,7 @@ use yii\db\Schema;
 class CSVToTableField extends Assets
 {
 
-	public $restrictFiles = true;
-
-	public $allowedKinds = ['excel'];
+	public $restrictFiles = false;
 
 	public $allowUploads = true;
 
