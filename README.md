@@ -32,10 +32,8 @@ Within the settings you can set classes on each of the table elements to give a 
 
 ## Template
 
-````
-
+```
 {{ csvToTable(entry.csvTable) }}
-
 ```
 
 To display the table, you can pass the Asset into a function. This will automatically change the data into a table format.
@@ -53,5 +51,3 @@ If you don't want your table to display with a <thead> you can pass an additiona
 [Bluegg Disclaimer](https://github.com/Bluegg/bluegg-open-source-disclaimer)
 
 Brought to you by [Bluegg](https://bluegg.co.uk)
-```
-````
