@@ -30,16 +30,28 @@ In a Dev environment there is a control panel navigation item which will direct 
 
 Within the settings you can set classes on each of the table elements to give a global style.
 
-## Usage
+## Config
 
-When creating a field, you will see a new CSV Table option. This is similar to an Assets field.
+You will need to add the following to your `config/general.php` file:
 
-Within an entry/category etc, you can add a CSV, XML, Excel file to be uploaded.
+````
+// Allow CSV files to be uploaded
+'extraFileKinds' => [
+	// merge .csv into list of Excel file kinds
+	'excel' => [
+    	'extensions' => ['csv'],
+	],
+],
+	```
+
+This will allow CSV files to be uploaded selected from Asset Fields.
 
 ## Template
 
-```
+````
+
 {{ csvToTable(entry.csvTable) }}
+
 ```
 
 To display the table, you can pass the Asset into a function. This will automatically change the data into a table format.
@@ -49,9 +61,12 @@ To display the table, you can pass the Asset into a function. This will automati
 If you don't want your table to display with a <thead> you can pass an additional parameter of `false` into the function which will remove the <thead> option.
 
 ```
+
 {{ csvToTable(entry.csvTable, false) }}
+
 ```
 
 [Bluegg Disclaimer](https://github.com/Bluegg/bluegg-open-source-disclaimer)
 
 Brought to you by [Bluegg](https://bluegg.co.uk)
+```
