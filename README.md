@@ -30,23 +30,6 @@ In a Dev environment there is a control panel navigation item which will direct 
 
 Within the settings you can set classes on each of the table elements to give a global style.
 
-## Config
-
-You will need to add the following to your `config/general.php` file:
-
-```
-// Allow CSV files to be uploaded
-'extraFileKinds' => [
-	// register new "CSV" file kind
-	'csv' => [
-    	'label' => 'CSV',
-    	'extensions' => ['csv'],
-	],
-],
-```
-
-This will allow CSV files to be uploaded selected from Asset Fields.
-
 ## Template
 
 ````
