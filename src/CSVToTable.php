@@ -30,8 +30,8 @@ class CSVToTable extends Plugin
 {
     public static ?CSVToTable $plugin;
 
-	public $hasCpSection = true;
-    public $hasCpSettings = true;
+	public bool $hasCpSection = true;
+    public bool $hasCpSettings = true;
 	public static ?Settings $settings;
 
     // Public Methods
@@ -128,7 +128,7 @@ class CSVToTable extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }

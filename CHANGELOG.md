@@ -9,3 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 
 - Initial release
+
+## 2.0.0 - 2022-05-8
+
+- Update for Craft 4

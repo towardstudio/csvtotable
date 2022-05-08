@@ -2,22 +2,20 @@
 namespace bluegg\csvtotable\fields;
 
 use Craft;
-
 use craft\fields\Assets;
-
 use yii\db\Schema;
 
 class CSVToTableField extends Assets
 {
 
-	public $restrictFiles = false;
-
-	public $allowUploads = true;
+	public bool $restrictFiles = false;
+	public bool $allowUploads = true;
+	public ?int $maxRelations = 1;
 
 	/**
     	* @inheritdoc
     */
-    protected $settingsTemplate = 'csvtotable/field/_settings';
+    protected string $settingsTemplate = 'csvtotable/field/_settings';
 
 	/**
     	* @inheritdoc
