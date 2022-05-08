@@ -1,10 +1,10 @@
-# CVS to Table plugin for Craft CMS 3.x
+# CVS to Table plugin for Craft CMS 4.x
 
 Create a table from a CSV
 
 ## Requirements
 
-This plugin requires Craft CMS 3 or later.
+This plugin requires Craft CMS 4.
 
 ## Installation
 
@@ -33,7 +33,8 @@ Within the settings you can set classes on each of the table elements to give a 
 ## Config
 
 You will need to add the following to your `config/general.php` file:
-```
+
+````
 // Allow CSV files to be uploaded
 'extraFileKinds' => [
 	// merge .csv into list of Excel file kinds
@@ -47,8 +48,10 @@ This will allow CSV files to be uploaded selected from Asset Fields.
 
 ## Template
 
-```
+````
+
 {{ csvToTable(entry.csvTable) }}
+
 ```
 
 To display the table, you can pass the Asset into a function. This will automatically change the data into a table format.
@@ -58,9 +61,12 @@ To display the table, you can pass the Asset into a function. This will automati
 If you don't want your table to display with a <thead> you can pass an additional parameter of `false` into the function which will remove the <thead> option.
 
 ```
+
 {{ csvToTable(entry.csvTable, false) }}
+
 ```
 
 [Bluegg Disclaimer](https://github.com/Bluegg/bluegg-open-source-disclaimer)
 
 Brought to you by [Bluegg](https://bluegg.co.uk)
+```
