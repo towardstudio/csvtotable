@@ -7,22 +7,20 @@ use yii\db\Schema;
 
 class CSVToTableField extends Assets
 {
+    public bool $restrictFiles = false;
+    public bool $allowUploads = true;
+    public ?int $maxRelations = 1;
 
-	public bool $restrictFiles = false;
-	public bool $allowUploads = true;
-	public ?int $maxRelations = 1;
+    /**
+     * @inheritdoc
+     */
+    protected string $settingsTemplate = "csvtotable/field/_settings";
 
-	/**
-    	* @inheritdoc
-    */
-    protected string $settingsTemplate = 'csvtotable/field/_settings';
-
-	/**
-    	* @inheritdoc
-    */
+    /**
+     * @inheritdoc
+     */
     public static function displayName(): string
     {
         return Craft::t("csvtotable", "CSV Table");
     }
-
 }

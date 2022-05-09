@@ -8,40 +8,31 @@ use craft\base\Model;
 
 class Settings extends Model
 {
-	// Public Properties
-	// =========================================================================
+    // Public Properties
+    // =========================================================================
 
-	/**
-	 * @var string
-	 */
+    /**
+     * @var string
+     */
 
-	public $name = "CSV to Table";
-	public $tableClass;
-	public $theadClass;
-	public $tbodyClass;
-	public $trClass;
-	public $thClass;
-	public $tdClass;
+    public $name = "CSV to Table";
+    public $tableClass;
+    public $theadClass;
+    public $tbodyClass;
+    public $trClass;
+    public $thClass;
+    public $tdClass;
 
-	// Public Methods
-	// =========================================================================
+    // Public Methods
+    // =========================================================================
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules(): array
-	{
-		return [
-        	[
-				[
-					'tableClass',
-					'theadClass',
-					'tbodyClass',
-					'trClass',
-					'thClass',
-					'tdClass'
-				],
-			'string'],
-    	];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function rules(): array
+    {
+        return [
+            [["tableClass", "theadClass", "tbodyClass", "trClass", "thClass", "tdClass"], "string"],
+        ];
+    }
 }

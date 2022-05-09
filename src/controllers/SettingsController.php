@@ -11,47 +11,44 @@ use yii\web\Response;
 
 class SettingsController extends Controller
 {
-	// Protected Properties
-	// =========================================================================
+    // Protected Properties
+    // =========================================================================
 
-	protected array|int|bool $allowAnonymous = [];
+    protected array|int|bool $allowAnonymous = [];
 
-	// Public Methods
-	// =========================================================================
+    // Public Methods
+    // =========================================================================
 
-	/**
-	 * Plugin settings
-	 *
-	 * @param null|bool|Settings $settings
-	 *
-	 * @return Response The rendered result
-	 */
-	public function actionPluginSettings($settings = null): Response
-	{
-		if ($settings === null) {
-			$settings = CSVToTable::$settings;
-		}
+    /**
+     * Plugin settings
+     *
+     * @param null|bool|Settings $settings
+     *
+     * @return Response The rendered result
+     */
+    public function actionPluginSettings($settings = null): Response
+    {
+        if ($settings === null) {
+            $settings = CSVToTable::$settings;
+        }
 
-		$variables = [];
+        $variables = [];
 
-		/** @var Settings $settings */
-		$templateTitle = Craft::t("csvtotable", "Settings");
+        /** @var Settings $settings */
+        $templateTitle = Craft::t("csvtotable", "Settings");
 
-		$view = Craft::$app->getView();
+        $view = Craft::$app->getView();
 
-		// Basic variables
-		$variables["fullPageForm"] = true;
-		$variables["selectedSubnavItem"] = "settings";
-		$variables["settings"] = $settings;
+        // Basic variables
+        $variables["fullPageForm"] = true;
+        $variables["selectedSubnavItem"] = "settings";
+        $variables["settings"] = $settings;
 
-		// Render the template
-		return $this->renderTemplate(
-			"csvtotable/settings",
-			$variables
-		);
-	}
+        // Render the template
+        return $this->renderTemplate("csvtotable/settings", $variables);
+    }
 
-		/**
+    /**
      * Saves a plugin’s settings.
      *
      * @return Response|null
@@ -60,26 +57,25 @@ class SettingsController extends Controller
     public function actionSavePluginSettings()
     {
         $this->requirePostRequest();
-		$settings = Craft::$app->getRequest()->getBodyParam("settings");
+        $settings = Craft::$app->getRequest()->getBodyParam("settings");
         $plugin = CSVToTable::$plugin;
 
         if ($plugin === null) {
-            throw new NotFoundHttpException('Plugin not found');
+            throw new NotFoundHttpException("Plugin not found");
         }
 
         if (!Craft::$app->getPlugins()->savePluginSettings($plugin, $settings)) {
-            $this->setFailFlash(Craft::t('app', 'Couldn’t save plugin settings.'));
+            $this->setFailFlash(Craft::t("app", "Couldn’t save plugin settings."));
 
             // Send the plugin back to the template
             Craft::$app->getUrlManager()->setRouteParams([
-                'plugin' => $plugin,
+                "plugin" => $plugin,
             ]);
 
             return null;
         }
 
-        $this->setSuccessFlash(Craft::t('app', 'Plugin settings saved.'));
+        $this->setSuccessFlash(Craft::t("app", "Plugin settings saved."));
         return $this->redirectToPostedUrl();
     }
-
 }

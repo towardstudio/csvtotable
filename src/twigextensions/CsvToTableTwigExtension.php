@@ -65,12 +65,6 @@ class CsvToTableTwigExtension extends AbstractExtension
      */
     public function convertCSV(object $file, object $settings, bool $displayHeading)
     {
-        if ($file instanceof Asset) {
-            $path = $file->getCopyOfFile();
-        } else {
-            $path = $file;
-        }
-
         $openPath = fopen($path, "r");
 
         // The data we're going to get from the file
