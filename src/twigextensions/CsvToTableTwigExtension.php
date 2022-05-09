@@ -32,6 +32,11 @@ class CsvToTableTwigExtension extends AbstractExtension
      */
     public function convertTable(Mixed $file = null, bool $displayHeading = true)
     {
+        // Check file instance
+        if (!$file instanceof AssetQuery && !$file instanceof Asset) {
+            return "⚠️ This plugin can only be used for an Asset Field";
+        }
+
         // Get classes added into the settings
         $settings = CsvToTable::$settings;
 
