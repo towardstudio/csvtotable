@@ -40,7 +40,7 @@ To display the table, you can pass the Asset into a function. This will automati
 
 ## Additional Parameter
 
-If you don't want your table to display with a <thead> you can pass an additional parameter of `false` into the function which will remove the <thead> option.
+If you don't want your table to display with a `<thead>` you can pass an additional parameter of `false` into the function which will remove the `<thead>` option.
 
 ```
 {{ csvToTable(entry.csvTable, false) }}

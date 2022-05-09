@@ -42,7 +42,7 @@ class CsvToTableTwigExtension extends AbstractExtension
 
         // Check that the file exists
         if (!empty($file)) {
-            // Check that the file is an Asset or a AssetQuery, if the latter than we want to
+            // Check that the file is an Asset or a AssetQuery, if the latter then we want to change the file so it looks at the Asset itself.
             if ($file instanceof AssetQuery) {
                 $file = $file->one();
             }
