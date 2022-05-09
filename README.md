@@ -1,4 +1,4 @@
-# CVS to Table plugin for Craft CMS 4.x
+# CSV to Table plugin for Craft CMS 4.x
 
 Create a table from a CSV
 
@@ -30,22 +30,6 @@ In a Dev environment there is a control panel navigation item which will direct 
 
 Within the settings you can set classes on each of the table elements to give a global style.
 
-## Config
-
-You will need to add the following to your `config/general.php` file:
-
-````
-// Allow CSV files to be uploaded
-'extraFileKinds' => [
-	// merge .csv into list of Excel file kinds
-	'excel' => [
-    	'extensions' => ['csv'],
-	],
-],
-	```
-
-This will allow CSV files to be uploaded selected from Asset Fields.
-
 ## Template
 
 ````
@@ -70,3 +54,4 @@ If you don't want your table to display with a <thead> you can pass an additiona
 
 Brought to you by [Bluegg](https://bluegg.co.uk)
 ```
+````
