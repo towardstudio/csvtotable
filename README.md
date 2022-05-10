@@ -1,10 +1,10 @@
-# CSV to Table plugin for Craft CMS 4.x
+# CVS to Table plugin for Craft CMS 3.x
 
 Create a table from a CSV
 
 ## Requirements
 
-This plugin requires Craft CMS 4.
+This plugin requires Craft CMS 3 or later.
 
 ## Installation
 
@@ -40,10 +40,12 @@ To display the table, you can pass the Asset into a function. This will automati
 
 ## Additional Parameter
 
-If you don't want your table to display with a `<thead>` you can pass an additional parameter of `false` into the function which will remove the `<thead>` option.
+If you don't want your table to display with a <thead> you can pass an additional parameter of `false` into the function which will remove the <thead> option.
 
 ```
+
 {{ csvToTable(entry.csvTable, false) }}
+
 ```
 
 [Bluegg Disclaimer](https://github.com/Bluegg/bluegg-open-source-disclaimer)

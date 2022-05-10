@@ -19,138 +19,154 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
  */
 class CsvToTableTwigExtension extends AbstractExtension
 {
-    /**
-     * @inheritdoc
-     */
-    public function getFunctions()
-    {
-        return [new TwigFunction("csvToTable", [$this, "convertTable"])];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function getFunctions()
+	{
+		return [new TwigFunction("csvToTable", [$this, "convertTable"])];
+	}
 
-    /**
-     * @param null $asset
-     */
-    public function convertTable(Mixed $file = null, bool $displayHeading = true)
-    {
-        // Check file instance
-        if (!$file instanceof AssetQuery && !$file instanceof Asset) {
-            return "⚠️ This plugin can only be used for an Asset Field";
-        }
+	/**
+	 * @param null $asset
+	 */
+	public function convertTable(Mixed $file = null, bool $displayHeading = true)
+	{
+		// Get classes added into the settings
+		$settings = CsvToTable::$settings;
 
-        // Get classes added into the settings
-        $settings = CsvToTable::$settings;
+		// Check that the file exists
+		if (!empty($file)) {
+			// Check that the file is an Asset or a AssetQuery, if the latter than we want to
+			if ($file instanceof AssetQuery) {
+				$file = $file->one();
+			}
 
-        // Check that the file exists
-        if (!empty($file)) {
-            // Check that the file is an Asset or a AssetQuery, if the latter then we want to change the file so it looks at the Asset itself.
-            if ($file instanceof AssetQuery) {
-                $file = $file->one();
-            }
+			$ext = $file->extension;
+			$excelExt = [
+				'xls',
+                'xlsm',
+                'xlsx',
+                'xltm',
+                'xltx',
+			];
 
-            $ext = $file->extension;
-            $excelExt = ["xls", "xlsm", "xlsx", "xltm", "xltx"];
+			if ($ext === 'csv')
+			{
+				$this->convertCSV($file, $settings, $displayHeading);
+			}
+			elseif (in_array($ext, $excelExt))
+			{
+				$this->convertExcel($file, $settings, $displayHeading);
+			}
+			else
+			{
+				return '⚠️ Please upload a CSV or Excel file';
+			}
 
-            if ($ext === "csv") {
-                $this->convertCSV($file, $settings, $displayHeading);
-            } elseif (in_array($ext, $excelExt)) {
-                $this->convertExcel($file, $settings, $displayHeading);
-            } else {
-                return "⚠️ Please upload a file with one of the following extension: csv, xls, xlsm, xlsx, xltm, xltx";
-            }
-        }
-    }
+		}
+	}
 
-    /**
-     * @param null $asset
-     */
-    public function convertCSV(object $file, object $settings, bool $displayHeading)
-    {
-        $openPath = fopen($path, "r");
+	/**
+	 * @param null $asset
+	 */
+	public function convertCSV(object $file, object $settings, bool $displayHeading)
+	{
+		if ($file instanceof Asset) {
+			$path = $file->getCopyOfFile();
+		} else {
+			$path = $file;
+		}
 
-        // The data we're going to get from the file
-        $csvData = [];
+		$openPath = fopen($path, "r");
 
-        if (($handle = $openPath) !== false) {
-            // Each line in the file is converted into an individual array that we call $data
-            // The items of the array are comma separated
-            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-                // Each individual array is being pushed into the nested array
-                $csvData[] = $data;
-            }
+		// The data we're going to get from the file
+		$csvData = [];
 
-            // Close the file
-            fclose($handle);
-        }
+		if (($handle = $openPath) !== false) {
+			// Each line in the file is converted into an individual array that we call $data
+			// The items of the array are comma separated
+			while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+				// Each individual array is being pushed into the nested array
+				$csvData[] = $data;
+			}
 
-        $this->createTable($csvData, $settings, $displayHeading);
-    }
+			// Close the file
+			fclose($handle);
+		}
 
-    /**
-     * @param null $asset
-     */
-    public function convertExcel(object $file, object $settings, bool $displayHeading)
-    {
-        $path = $file->getCopyOfFile();
+		$this->createTable($csvData, $settings, $displayHeading);
+	}
 
-        $reader = new Xlsx();
-        $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($path);
-        $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
-        $csvData = $sheet->toArray();
+	/**
+	 * @param null $asset
+	 */
+	public function convertExcel(object $file, object $settings, bool $displayHeading)
+	{
+		$path = $file->getCopyOfFile();
 
-        $this->createTable($csvData, $settings, $displayHeading);
-    }
+		$reader = new Xlsx();
+		$reader->setReadDataOnly(true);
+		$spreadsheet = $reader->load($path);
+		$sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
+		$csvData = $sheet->toArray();
 
-    /**
-     * @param null $asset
-     */
-    public function createTable(array $csvData, object $settings, bool $displayHeading)
-    {
-        // Create the table data;
-        $table = "<table class='" . $settings->tableClass . "'>";
+		$this->createTable($csvData, $settings, $displayHeading);
 
-        $length = count($csvData);
-        $row = 1;
+	}
 
-        // Loop through array data
-        foreach ($csvData as $index => $data) {
-            // Add the table heading if requested
-            if ($row === 1 && $displayHeading === true) {
-                $table .= "<thead class='" . $settings->theadClass . "'>";
-            }
+	/**
+	 * @param null $asset
+	 */
+	public function createTable(array $csvData, object $settings, bool $displayHeading)
+	{
+		// Create the table data;
+		$table = "<table class='" . $settings->tableClass . "'>";
 
-            if (!$displayHeading || $row === 2) {
-                $table .= "<tbody class='" . $settings->tbodyClass . "'>";
-            }
+		$length = count($csvData);
+		$row = 1;
 
-            // Open the row
-            $table .= '<tr class="' . $settings->trClass . '">';
+		// Loop through array data
+		foreach ($csvData as $index => $data) {
+			// Add the table heading if requested
+			if ($row === 1 && $displayHeading === true) {
+				$table .= "<thead class='" . $settings->theadClass . "'>";
+			}
 
-            foreach ($data as $value) {
-                if ($row === 1 && $displayHeading) {
-                    $table .= '<th class="' . $settings->thClass . '">' . $value . "</th>";
-                } else {
-                    $table .= '<td class="' . $settings->tdClass . '">' . $value . "</td>";
-                }
-            }
+			if (!$displayHeading || $row === 2) {
+				$table .= "<tbody class='" . $settings->tbodyClass . "'>";
+			}
 
-            // Close the row
-            echo "</tr>";
+			// Open the row
+			$table .= '<tr class="' . $settings->trClass . '">';
 
-            if ($index === $length) {
-                $table .= "</tbody>";
-            }
+			foreach ($data as $value) {
+				if ($row === 1 && $displayHeading) {
+					$table .=
+						'<th class="' . $settings->thClass . '">' . $value . "</th>";
+				} else {
+					$table .=
+						'<td class="' . $settings->tdClass . '">' . $value . "</td>";
+				}
+			}
 
-            if ($row === 1 && $displayHeading === true) {
-                $table .= "</thead>";
-            }
+			// Close the row
+			echo "</tr>";
 
-            $row++;
-        }
+			if ($index === $length) {
+				$table .= "</tbody>";
+			}
 
-        // Close Table
-        $table .= "</table>";
+			if ($row === 1 && $displayHeading === true) {
+				$table .= "</thead>";
+			}
 
-        echo $table;
-    }
+			$row++;
+		}
+
+		// Close Table
+		$table .= "</table>";
+
+		echo $table;
+	}
 }

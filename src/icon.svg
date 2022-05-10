@@ -3,15 +3,19 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="544.2px" height="544.2px" viewBox="0 0 544.2 544.2" style="enable-background:new 0 0 544.2 544.2;" xml:space="preserve"
 	>
-<circle cx="272.1" cy="271.8" r="272.1" fill="#CE0D41"/>
-<rect x="229.3" y="206.1" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="229.3" y="347.3" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="333.8" y="206.1" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="229.3" y="276.7" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="124.8" y="276.7" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="333.8" y="347.3" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="333.8" y="276.7" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="124.8" y="347.3" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="124.8" y="206.1" width="83.4" height="49.5" fill="#FFFFFF"/>
-<rect x="124.8" y="146.2" width="292.5" height="38.8" fill="#FFFFFF"/>
+<style type="text/css">
+	.st0{fill:#CE0D41;}
+	.st1{fill:#FFFFFF;}
+</style>
+<circle class="st0" cx="272.1" cy="271.8" r="272.1"/>
+<rect x="229.3" y="206.1" class="st1" width="83.4" height="49.5"/>
+<rect x="229.3" y="347.3" class="st1" width="83.4" height="49.5"/>
+<rect x="333.8" y="206.1" class="st1" width="83.4" height="49.5"/>
+<rect x="229.3" y="276.7" class="st1" width="83.4" height="49.5"/>
+<rect x="124.8" y="276.7" class="st1" width="83.4" height="49.5"/>
+<rect x="333.8" y="347.3" class="st1" width="83.4" height="49.5"/>
+<rect x="333.8" y="276.7" class="st1" width="83.4" height="49.5"/>
+<rect x="124.8" y="347.3" class="st1" width="83.4" height="49.5"/>
+<rect x="124.8" y="206.1" class="st1" width="83.4" height="49.5"/>
+<rect x="124.8" y="146.2" class="st1" width="292.5" height="38.8"/>
 </svg>
