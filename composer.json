@@ -1,37 +1,37 @@
 {
-  "name": "bluegg/csvtotable",
-  "description": "Create a table from a CSV",
-  "type": "craft-plugin",
-  "version": "2.0.1",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Bluegg",
-      "homepage": "https://bluegg.co.uk"
-    }
-  ],
-  "require": {
-    "craftcms/cms": "^4.0.0",
-    "phpoffice/phpspreadsheet": "^1.23"
-  },
-  "autoload": {
-    "psr-4": {
-      "bluegg\\csvtotable\\": "src/"
-    }
-  },
-  "extra": {
-    "name": "CSV 2 Table",
-    "handle": "csvtotable",
-    "developer": "Bluegg",
-    "developerUrl": "https://bluegg.co.uk",
-    "documentationUrl": "https://github.com/bluegg/csvtotable/blob/main/README.md",
-    "changelogUrl": "https://raw.githubusercontent.com/bluegg/csvtotable/main/CHANGELOG.md",
-    "class": "bluegg\\csvtotable\\CSVToTable"
-  },
-  "config": {
-    "allow-plugins": {
-      "yiisoft/yii2-composer": true,
-      "craftcms/plugin-installer": true
-    }
-  }
+	"name": "bluegg/csvtotable",
+	"description": "Create a table from a CSV",
+	"type": "craft-plugin",
+	"version": "2.0.0",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Bluegg",
+			"homepage": "https://bluegg.co.uk"
+		}
+	],
+	"require": {
+		"craftcms/cms": "^4.0.0",
+		"phpoffice/phpspreadsheet": "^1.23"
+	},
+	"autoload": {
+		"psr-4": {
+			"bluegg\\csvtotable\\": "src/"
+		}
+	},
+	"extra": {
+		"name": "CSV 2 Table",
+		"handle": "csvtotable",
+		"developer": "Bluegg",
+		"developerUrl": "https://bluegg.co.uk",
+		"documentationUrl": "https://github.com/bluegg/csvtotable/blob/main/README.md",
+		"changelogUrl": "https://raw.githubusercontent.com/bluegg/csvtotable/main/CHANGELOG.md",
+		"class": "bluegg\\csvtotable\\CSVToTable"
+	},
+	"config": {
+		"allow-plugins": {
+			"yiisoft/yii2-composer": true,
+			"craftcms/plugin-installer": true
+		}
+	}
 }
