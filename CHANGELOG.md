@@ -13,3 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.0.0 - 2022-05-8
 
 -   Update for Craft 4
+
+## 2.0.1 - 2022-07-07
+
+-   Fix for Twig Extension
