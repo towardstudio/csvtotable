@@ -136,7 +136,7 @@ class CsvToTableTwigExtension extends AbstractExtension
 				$table .= "<thead class='" . $settings->theadClass . "'>";
 			}
 
-			if (!$displayHeading || $row === 2) {
+			if ($row === 1 && !$displayHeading) {
 				$table .= "<tbody class='" . $settings->tbodyClass . "'>";
 			}
 
@@ -164,7 +164,7 @@ class CsvToTableTwigExtension extends AbstractExtension
 			// Close the row
 			echo "</tr>";
 
-			if ($index === $length) {
+			if ($index === $length - 1) {
 				$table .= "</tbody>";
 			}
 
