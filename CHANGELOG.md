@@ -17,3 +17,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.0.1 - 2022-07-07
 
 -   Fix for Twig Extension
+
+## 2.0.1 - 2023-02-20
+
+-   Add New Icon
