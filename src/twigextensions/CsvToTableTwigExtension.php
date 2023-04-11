@@ -1,7 +1,7 @@
 <?php
-namespace bluegg\csvtotable\twigextensions;
+namespace towardstudio\csvtotable\twigextensions;
 
-use bluegg\csvtotable\CsvToTable;
+use towardstudio\csvtotable\CsvToTable;
 
 use Craft;
 
@@ -14,7 +14,7 @@ use craft\elements\db\AssetQuery;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 /**
- * @author    Charlie Dowley
+ * @author    Toward Studio
  * @since     1.0.0
  */
 class CsvToTableTwigExtension extends AbstractExtension

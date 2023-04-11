@@ -1,5 +1,5 @@
 <?php
-namespace bluegg\csvtotable\fields;
+namespace towardstudio\csvtotable\fields;
 
 use Craft;
 use craft\fields\Assets;

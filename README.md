@@ -19,7 +19,7 @@ cd /path/to/project/craft
 2. Then tell Composer to load the plugin:
 
 ```
-composer require bluegg/csvtotable
+composer require towardstudio/csvtotable
 ```
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for CSV to Table.
@@ -46,6 +46,6 @@ If you don't want your table to display with a `<thead>` you can pass an additio
 {{ csvToTable(entry.csvTable, false) }}
 ```
 
-[Bluegg Disclaimer](https://github.com/Bluegg/bluegg-open-source-disclaimer)
+[Toward Disclaimer](https://github.com/towardstudio/toward-open-source-disclaimer)
 
-Brought to you by [Bluegg](https://bluegg.co.uk)
+Brought to you by [Toward](https://toward.studio)

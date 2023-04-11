@@ -1,7 +1,7 @@
 <?php
-namespace bluegg\csvtotable\models;
+namespace towardstudio\csvtotable\models;
 
-use bluegg\csvtotable\CSVToTable;
+use towardstudio\csvtotable\CSVToTable;
 
 use Craft;
 use craft\base\Model;

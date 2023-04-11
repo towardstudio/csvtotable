@@ -21,3 +21,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 2.0.1 - 2023-02-20
 
 -   Add New Icon
+
+## 2.1.0 - 2022-03-20
+
+-   Change Bluegg to Toward

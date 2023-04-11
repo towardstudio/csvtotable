@@ -1,13 +1,13 @@
 {
-	"name": "bluegg/csvtotable",
+	"name": "towardstudio/csvtotable",
 	"description": "Create a table from a CSV",
 	"type": "craft-plugin",
-	"version": "2.0.3",
+	"version": "2.1.0",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "Bluegg",
-			"homepage": "https://bluegg.co.uk"
+			"name": "Toward Studio",
+			"homepage": "https://toward.studio"
 		}
 	],
 	"require": {
@@ -16,17 +16,17 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"bluegg\\csvtotable\\": "src/"
+			"towardstudio\\csvtotable\\": "src/"
 		}
 	},
 	"extra": {
 		"name": "CSV 2 Table",
 		"handle": "csvtotable",
-		"developer": "Bluegg",
-		"developerUrl": "https://bluegg.co.uk",
-		"documentationUrl": "https://github.com/bluegg/csvtotable/blob/main/README.md",
-		"changelogUrl": "https://raw.githubusercontent.com/bluegg/csvtotable/main/CHANGELOG.md",
-		"class": "bluegg\\csvtotable\\CSVToTable"
+		"developer": "Toward Studio",
+		"developerUrl": "https://toward.studio",
+		"documentationUrl": "https://github.com/towardstudio/csvtotable/blob/main/README.md",
+		"changelogUrl": "https://raw.githubusercontent.com/towardstudio/csvtotable/main/CHANGELOG.md",
+		"class": "towardstudio\\csvtotable\\CSVToTable"
 	},
 	"config": {
 		"allow-plugins": {

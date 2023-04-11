@@ -1,5 +1,5 @@
 <?php
-namespace bluegg\csvtotable;
+namespace towardstudio\csvtotable;
 
 use Craft;
 use craft\base\Plugin;
@@ -14,14 +14,14 @@ use craft\web\UrlManager;
 use craft\web\twig\variables\Cp;
 use craft\web\View;
 
-use bluegg\csvtotable\models\Settings;
-use bluegg\csvtotable\fields\CSVToTableField;
-use bluegg\csvtotable\twigextensions\CsvToTableTwigExtension;
+use towardstudio\csvtotable\models\Settings;
+use towardstudio\csvtotable\fields\CSVToTableField;
+use towardstudio\csvtotable\twigextensions\CsvToTableTwigExtension;
 
 use yii\base\Event;
 
 /**
- * @author    bluegg
+ * @author    towardstudio
  * @package   CSVToTable
  * @since     1.0.0
  *

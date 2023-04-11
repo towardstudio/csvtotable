@@ -1,8 +1,8 @@
 <?php
-namespace bluegg\csvtotable\controllers;
+namespace towardstudio\csvtotable\controllers;
 
-use bluegg\csvtotable\CSVToTable;
-use bluegg\csvtotable\models\Settings;
+use towardstudio\csvtotable\CSVToTable;
+use towardstudio\csvtotable\models\Settings;
 
 use Craft;
 use craft\web\Controller;
