@@ -1,10 +1,10 @@
-# CSV to Table plugin for Craft CMS 4.x
+# CSV to Table plugin for Craft CMS 5.x
 
 Create a table from a CSV
 
 ## Requirements
 
-This plugin requires Craft CMS 4.
+This plugin requires Craft CMS 5 or later.
 
 ## Installation
 

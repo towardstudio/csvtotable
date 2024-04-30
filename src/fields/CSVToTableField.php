@@ -23,4 +23,12 @@ class CSVToTableField extends Assets
     {
         return Craft::t("csvtotable", "CSV Table");
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function icon(): string
+    {
+        return 'table';
+    }
 }
