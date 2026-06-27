@@ -2,7 +2,7 @@
 	"name": "towardstudio/csvtotable",
 	"description": "Create a table from a CSV",
 	"type": "craft-plugin",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"license": "MIT",
 	"authors": [
 		{
@@ -12,7 +12,7 @@
 	],
 	"require": {
 		"craftcms/cms": "^5",
-		"phpoffice/phpspreadsheet": "^1.23"
+		"phpoffice/phpspreadsheet": "^5.3"
 	},
 	"autoload": {
 		"psr-4": {
